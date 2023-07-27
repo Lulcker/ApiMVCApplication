@@ -1,0 +1,25 @@
+﻿@model ApiMVCApplication.Models.User
+
+<h2>Изменение пользователя</h2>
+<form asp-action="Edit" asp-controller="Home" asp-route-id="@Model.Id">
+    <p>
+        <label asp-for="Login">Login</label><br />
+        <input type="text" asp-for="Login" />
+    </p>
+    <p>
+        <label asp-for="Password">Password</label><br />
+        <input type="text" asp-for="Password" />
+    </p>
+    <p>
+        <label asp-for="UserGroupId">Group</label><br />
+        <input type="number" asp-for="UserGroupId" readonly />
+    </p>
+    <p>
+        <label asp-for="UserStateId">State</label><br />
+        <input type="number" asp-for="UserStateId" readonly />
+    </p>
+    <p>
+        <input type="submit" value="Send" />
+    </p>
+</form>
+

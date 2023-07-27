@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace ApiMVCApplication.Models
 {
@@ -27,10 +28,6 @@ namespace ApiMVCApplication.Models
                 );
 
             modelBuilder.Entity<User>().Property(u => u.UserStateId).HasDefaultValue(1);
-
-            modelBuilder.Entity<User>().HasData(
-                new User { Id = 1, Login = "Venik", Password = "Hello", UserGroupId = 1}
-                );
         }
     }
 }

@@ -62,16 +62,6 @@ namespace ApiMVCApplication.Migrations
                     b.HasIndex("UserStateId");
 
                     b.ToTable("user");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedDate = new DateTime(2023, 7, 26, 15, 22, 57, 918, DateTimeKind.Utc).AddTicks(5825),
-                            Login = "Venik",
-                            Password = "Hello",
-                            UserGroupId = 1
-                        });
                 });
 
             modelBuilder.Entity("ApiMVCApplication.Models.UserGroup", b =>

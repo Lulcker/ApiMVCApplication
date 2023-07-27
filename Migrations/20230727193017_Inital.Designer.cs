@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ApiMVCApplication.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20230726152258_Inital")]
+    [Migration("20230727193017_Inital")]
     partial class Inital
     {
         /// <inheritdoc />
@@ -65,16 +65,6 @@ namespace ApiMVCApplication.Migrations
                     b.HasIndex("UserStateId");
 
                     b.ToTable("user");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedDate = new DateTime(2023, 7, 26, 15, 22, 57, 918, DateTimeKind.Utc).AddTicks(5825),
-                            Login = "Venik",
-                            Password = "Hello",
-                            UserGroupId = 1
-                        });
                 });
 
             modelBuilder.Entity("ApiMVCApplication.Models.UserGroup", b =>

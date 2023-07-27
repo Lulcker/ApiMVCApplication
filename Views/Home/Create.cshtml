@@ -1,0 +1,30 @@
+﻿@model ApiMVCApplication.Models.User
+
+<h2>Добавление пользователя</h2>
+<form asp-action="Create", asp-controller="Home">
+    <p>
+        <label asp-for="Login">Login</label><br />
+        <input type="text" asp-for="Login"/>
+    </p>
+    <p>
+        <label asp-for="Password">Password</label><br />
+        <input type="password" asp-for="Password" />
+    </p>
+    <p>
+        <label asp-for="UserGroupId">User group</label>
+        <select asp-for="UserGroupId">
+            @if (ViewBag.CountAdmin)
+            {
+                <option value="1">Admin</option>
+                <option value="2">User</option>
+            }
+            else
+            {
+                <option value="2">User</option>
+            }
+        </select>
+    </p>
+    <p>
+        <input type="submit" value="Send" />
+    </p>
+</form>

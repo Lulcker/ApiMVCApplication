@@ -87,11 +87,6 @@ namespace ApiMVCApplication.Migrations
                     { 2, "Blocked", "Blocked user" }
                 });
 
-            migrationBuilder.InsertData(
-                table: "user",
-                columns: new[] { "id", "created_date", "login", "password", "user_group_id" },
-                values: new object[] { 1, new DateTime(2023, 7, 26, 15, 22, 57, 918, DateTimeKind.Utc).AddTicks(5825), "Venik", "Hello", 1 });
-
             migrationBuilder.CreateIndex(
                 name: "IX_user_user_group_id",
                 table: "user",
