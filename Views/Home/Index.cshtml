@@ -1,0 +1,14 @@
+﻿@model IEnumerable<ApiMVCApplication.Models.User>
+<h2>Список пользователей</h2>
+<table class="table">
+    <tr><th>Login</th><th>Password</th><th>Created Date</th><th>State</th><th>Group</th></tr>
+    @foreach(var item in Model){
+        <tr>
+            <td>@item.Login</td>
+            <td>@item.Password</td>
+            <td>@item.CreatedDate</td>
+            <td>@item.UserState!.Code</td>
+            <td>@item.UserGroup!.Code</td>
+        </tr>
+    }
+</table>
