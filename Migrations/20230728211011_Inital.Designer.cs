@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ApiMVCApplication.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20230727193017_Inital")]
+    [Migration("20230728211011_Inital")]
     partial class Inital
     {
         /// <inheritdoc />
@@ -49,10 +49,12 @@ namespace ApiMVCApplication.Migrations
                         .HasColumnName("password");
 
                     b.Property<int?>("UserGroupId")
+                        .IsRequired()
                         .HasColumnType("integer")
                         .HasColumnName("user_group_id");
 
                     b.Property<int?>("UserStateId")
+                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasDefaultValue(1)
@@ -145,11 +147,15 @@ namespace ApiMVCApplication.Migrations
                 {
                     b.HasOne("ApiMVCApplication.Models.UserGroup", "UserGroup")
                         .WithMany("Users")
-                        .HasForeignKey("UserGroupId");
+                        .HasForeignKey("UserGroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("ApiMVCApplication.Models.UserState", "UserState")
                         .WithMany("Users")
-                        .HasForeignKey("UserStateId");
+                        .HasForeignKey("UserStateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("UserGroup");
 

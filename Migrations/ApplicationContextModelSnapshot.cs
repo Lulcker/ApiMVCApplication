@@ -46,10 +46,12 @@ namespace ApiMVCApplication.Migrations
                         .HasColumnName("password");
 
                     b.Property<int?>("UserGroupId")
+                        .IsRequired()
                         .HasColumnType("integer")
                         .HasColumnName("user_group_id");
 
                     b.Property<int?>("UserStateId")
+                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasDefaultValue(1)
@@ -142,11 +144,15 @@ namespace ApiMVCApplication.Migrations
                 {
                     b.HasOne("ApiMVCApplication.Models.UserGroup", "UserGroup")
                         .WithMany("Users")
-                        .HasForeignKey("UserGroupId");
+                        .HasForeignKey("UserGroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("ApiMVCApplication.Models.UserState", "UserState")
                         .WithMany("Users")
-                        .HasForeignKey("UserStateId");
+                        .HasForeignKey("UserStateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("UserGroup");
 

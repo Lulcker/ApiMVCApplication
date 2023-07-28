@@ -21,11 +21,13 @@ namespace ApiMVCApplication.Models
         public DateTime? CreatedDate { get; set; } = DateTime.UtcNow;
 
         [Column("user_group_id")]
+        [Required]
         public int? UserGroupId { get; set; }
 
         public UserGroup? UserGroup { get; set; }
 
         [Column("user_state_id")]
+        [Required]
         public int? UserStateId { get; set; }
 
         public UserState? UserState { get; set; }

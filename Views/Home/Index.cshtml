@@ -1,8 +1,13 @@
 ﻿@model IEnumerable<ApiMVCApplication.Models.User>
+<style>
+    .tr, td, th{
+        padding: 10px 10px 10px 10px;
+    }
+</style>
 <p><a asp-action="Create">Добавить пользователя</a></p>
 <h2>Список пользователей</h2>
-<table class="table">
-    <tr><th>Login</th><th>Password</th><th>Created Date</th><th>State</th><th>Group</th></tr>
+<table>
+    <tr><th>Login</th><th>Password</th><th>Created Date</th><th>Group</th><th>State</th></tr>
     @foreach(var item in Model){
         <tr>
             <td>@item.Login</td>
@@ -11,9 +16,12 @@
             <td>@item.UserGroup?.Code</td>
             <td>@item.UserState?.Code</td>
             <td>
-                <a asp-action="Edit" asp-controller="Home" asp-route-id="@item.Id">Изменить</a>
+                <form asp-action="Edit" asp-controller="Home" asp-route-id="@item.Id" method="get">
+                    <input type="submit" value="Изменить">
+                </form>
             </td>
-            @if (item.UserStateId != 2){
+            @if (item.UserStateId != 2)
+            {
                 <td>
                     <form asp-action="Delete" asp-controller="Home" asp-route-id="@item.Id" method="post">
                         <input type="submit" value="Удалить" />

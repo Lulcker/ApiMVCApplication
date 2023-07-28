@@ -51,8 +51,8 @@ namespace ApiMVCApplication.Migrations
                     login = table.Column<string>(type: "text", nullable: false),
                     password = table.Column<string>(type: "text", nullable: false),
                     created_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    user_group_id = table.Column<int>(type: "integer", nullable: true),
-                    user_state_id = table.Column<int>(type: "integer", nullable: true, defaultValue: 1)
+                    user_group_id = table.Column<int>(type: "integer", nullable: false),
+                    user_state_id = table.Column<int>(type: "integer", nullable: false, defaultValue: 1)
                 },
                 constraints: table =>
                 {
@@ -61,12 +61,14 @@ namespace ApiMVCApplication.Migrations
                         name: "FK_user_user_group_user_group_id",
                         column: x => x.user_group_id,
                         principalTable: "user_group",
-                        principalColumn: "id");
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_user_user_state_user_state_id",
                         column: x => x.user_state_id,
                         principalTable: "user_state",
-                        principalColumn: "id");
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(

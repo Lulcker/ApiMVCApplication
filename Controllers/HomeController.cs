@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace ApiMVCApplication.Controllers
@@ -22,6 +23,7 @@ namespace ApiMVCApplication.Controllers
                                 .Include(u => u.UserGroup)
                                 .Include(u => u.UserState)
                                 .ToListAsync();
+
             return View(users);
         }
         
@@ -29,6 +31,7 @@ namespace ApiMVCApplication.Controllers
         {
             int countAdmin = await db.Users.CountAsync(u => u.UserGroupId == 1 && u.UserStateId != 2);
             ViewBag.CountAdmin = countAdmin < 1;
+
             return View();
         }
 
@@ -37,6 +40,7 @@ namespace ApiMVCApplication.Controllers
         {
             db.Users.Add(user);
             await db.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
 
@@ -44,12 +48,14 @@ namespace ApiMVCApplication.Controllers
         {
             if (id != null)
             {
-                User? user = await db.Users.FirstOrDefaultAsync(p => p.Id == id);
+                User? user = await db.Users
+                    .Include(g => g.UserGroup)
+                    .Include(s => s.UserState)
+                    .FirstOrDefaultAsync(p => p.Id == id);
                 if (user != null)
-                {
                     return View(user);
-                }
             }
+
             return NotFound();
         }
 
@@ -73,6 +79,7 @@ namespace ApiMVCApplication.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
+
             return NotFound();
         }
     }
