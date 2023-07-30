@@ -4,11 +4,13 @@
 <form asp-action="Create", asp-controller="Home">
     <p>
         <label asp-for="Login">Login</label><br />
-        <input type="text" asp-for="Login" placeholder="login"/>
+        <input type="text" asp-for="Login" placeholder="введите логин"/>
+        <span asp-validation-for="Login"></span>
     </p>
     <p>
         <label asp-for="Password">Password</label><br />
-        <input type="password" asp-for="Password" placeholder="password"/>
+        <input type="password" asp-for="Password" placeholder="введите пароль"/>
+        <span asp-validation-for="Password"></span>
     </p>
     <p>
         <label asp-for="UserGroupId">User group</label>
@@ -29,3 +31,7 @@
     </p>
 </form>
 <p><a asp-action="Index">Назад</a></p>
+
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.1.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>

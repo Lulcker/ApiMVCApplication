@@ -4,6 +4,7 @@
         padding: 10px 10px 10px 10px;
     }
 </style>
+
 <p><a asp-action="Create">Добавить пользователя</a></p>
 <h2>Список пользователей</h2>
 <table>
@@ -16,12 +17,17 @@
             <td>@item.UserGroup?.Code</td>
             <td>@item.UserState?.Code</td>
             <td>
-                <form asp-action="Edit" asp-controller="Home" asp-route-id="@item.Id" method="get">
-                    <input type="submit" value="Изменить">
+                <form asp-action="Details" asp-controller="Home" asp-route-id="@item.Id" method="get">
+                    <input type="submit" value="Details" />
                 </form>
             </td>
             @if (item.UserStateId != 2)
             {
+                <td>
+                    <form asp-action="Edit" asp-controller="Home" asp-route-id="@item.Id" method="get">
+                        <input type="submit" value="Изменить" />
+                    </form>
+                </td>
                 <td>
                     <form asp-action="Delete" asp-controller="Home" asp-route-id="@item.Id" method="post">
                         <input type="submit" value="Удалить" />

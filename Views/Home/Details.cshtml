@@ -1,0 +1,28 @@
+﻿@model ApiMVCApplication.Models.User
+
+<h2>Details login: @Model.Login</h2>
+<form asp-action="Details" asp-controller="Home" asp-route-id="@Model.Id">
+    <p>
+        <label asp-for="Login">Login</label><br />
+        <input type="text" asp-for="Login" readonly/>
+    </p>
+    <p>
+        <label asp-for="Password">Password</label><br />
+        <input type="text" asp-for="Password" readonly />
+    </p>
+    <p>
+        <label asp-for="CreatedDate">CreatedDate</label><br />
+        <input type="datetime" asp-for="CreatedDate" readonly />
+    </p>
+    <p>
+        <label asp-for="UserGroup!.Code">Group</label><br />
+        <input type="text" asp-for="UserGroup!.Code" readonly />
+    </p>
+    <p>
+        <label asp-for="UserState!.Code">State</label><br />
+        <input type="text" asp-for="UserState!.Code" readonly />
+    </p>
+</form>
+<p>
+    <a asp-action="Index">Назад</a>
+</p>

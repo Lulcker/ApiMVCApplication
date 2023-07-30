@@ -11,16 +11,13 @@
         <input type="password" asp-for="Password" />
     </p>
     <p>
-        <label asp-for="UserGroupId">Group</label><br />
-        <input type="number" asp-for="UserGroupId" readonly />
-    </p>
-    <p>
-        <label asp-for="UserStateId">State</label><br />
-        <input type="number" asp-for="UserStateId" readonly />
-    </p>
-    <p>
+        <input type="hidden" asp-for="UserGroupId" />
+        <input type="hidden" asp-for="UserStateId" />
+
         <input type="submit" value="Send" />
     </p>
 </form>
-<p><a asp-action="Index">Назад</a></p>
+<p>
+    <a asp-action="Index">Назад</a>
+</p>
 

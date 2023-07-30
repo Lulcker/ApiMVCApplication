@@ -10,11 +10,12 @@ namespace ApiMVCApplication.Models
         public int Id { get; set; }
 
         [Column("login")]
-        [Required]
+        [Required(ErrorMessage = "Поле обязательно для заполнения")]
         public string? Login { get; set; }
 
         [Column("password")]
-        [Required]
+        [MinLength(8, ErrorMessage = "Длина пароля не мнее 8 символов")]
+        [Required(ErrorMessage = "Поле обязательно для заполнения")]
         public string? Password { get; set; }
 
         [Column("created_date")]

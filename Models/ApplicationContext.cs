@@ -28,6 +28,8 @@ namespace ApiMVCApplication.Models
                 );
 
             modelBuilder.Entity<User>().Property(u => u.UserStateId).HasDefaultValue(1);
+
+            modelBuilder.Entity<User>().Property(u => u.CreatedDate).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
         }
     }
 }
