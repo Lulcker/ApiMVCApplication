@@ -4,7 +4,7 @@ namespace ApiMVCApplication.Repositories
 {
     public interface IUsersRepository
     {
-        Task<IEnumerable<User>> GetUsersAsync();
+        Task<IndexViewModel> GetUsersAsync(int count, int page, int pageSize = 5);
 
         Task<User?> GetUserAsync(int id);
 
@@ -15,5 +15,7 @@ namespace ApiMVCApplication.Repositories
         Task DeleteUser(int id);
 
         int CountAdmin { get; }
+
+        int TotalCount { get; }
     }
 }

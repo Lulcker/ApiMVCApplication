@@ -12,14 +12,17 @@ namespace ApiMVCApplication.Controllers
         {
             _usersRepository = usersRepository;
         }
-             
-        public async Task<ActionResult> Index()
+
+        [HttpGet]
+        public async Task<ActionResult> Index(int page = 1)
         {
-            var users = await _usersRepository.GetUsersAsync();
+            int count = _usersRepository.TotalCount;
+            var users = await _usersRepository.GetUsersAsync(count, page);
 
             return View(users);
         }
 
+        [HttpGet]
         public async Task<ActionResult> Details(int id)
         {
             var user = await _usersRepository.GetUserAsync(id);
@@ -28,7 +31,8 @@ namespace ApiMVCApplication.Controllers
 
             return View(user);
         }
-        
+
+        [HttpGet]
         public IActionResult Create()
         {
             int countAdmin = _usersRepository.CountAdmin;
@@ -46,6 +50,7 @@ namespace ApiMVCApplication.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
             var user = await _usersRepository.GetUserAsync(id);

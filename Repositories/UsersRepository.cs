@@ -11,13 +11,19 @@ namespace ApiMVCApplication.Repositories
             _db = db;
         }
 
-        public async Task<IEnumerable<User>> GetUsersAsync()
+        public async Task<IndexViewModel> GetUsersAsync(int count, int page, int pageSize = 5)
         {
-            return await _db.Users
+            var users = await _db.Users
                 .Include(g => g.UserGroup)
                 .Include(s => s.UserState)
                 .OrderBy(s => s.Id)
+                .Skip((page - 1) * pageSize).Take(pageSize)
                 .ToListAsync();
+
+            PagingInfo pagingInfo = new PagingInfo(count, page, pageSize);
+            IndexViewModel viewModel = new IndexViewModel(users, pagingInfo);
+
+            return viewModel;
         }
 
         public async Task<User?> GetUserAsync(int id)
@@ -48,5 +54,7 @@ namespace ApiMVCApplication.Repositories
         }
 
         public int CountAdmin => _db.Users.Count(u => u.UserGroupId == 1 && u.UserStateId != 2);
+
+        public int TotalCount => _db.Users.Count();
     }
 }
